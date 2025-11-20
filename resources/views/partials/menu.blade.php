@@ -12,7 +12,7 @@
     </li>
     <li>
       {{-- Enlace de ejemplo para futuros listados de estadios --}}
-      <a class="text-white hover:underline" href="#">
+      <a class="text-white hover:underline" href="">
         Llistat d'Estadis
       </a>
     </li>

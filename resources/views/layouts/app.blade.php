@@ -10,7 +10,7 @@
     <title>@yield('title', 'Guia de futbol femení')</title>
 
     {{-- Carga los assets compilados por Vite (por ejemplo, CSS de la app) --}}
-    @vite(['resources/css/app.css'])
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
 <body class="font-sans bg-gray-100 text-gray-900"> {{-- Clases de Tailwind para estilo básico --}}
