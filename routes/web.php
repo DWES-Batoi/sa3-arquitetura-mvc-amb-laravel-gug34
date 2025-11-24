@@ -6,7 +6,7 @@ use App\Http\Controllers\EstadiController;
 use App\Http\Controllers\JugadoraController;
 use App\Http\Controllers\PartitController;
 
-Route::get('/', fn() => "Benvingut a la Guia d'Equips de Futbol Femení!");
+Route::get('/', fn() => view('home'));
 
 // Equips
 Route::resource('equips', EquipController::class);
