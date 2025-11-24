@@ -18,5 +18,10 @@
         Jugadores
       </a>
     </li>
+    <li>
+      <a class="text-white hover:underline" href="{{ route('partits.index') }}">
+        Partits
+      </a>
+    </li>
   </ul>
 </nav>
