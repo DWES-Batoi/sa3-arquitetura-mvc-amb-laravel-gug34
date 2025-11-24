@@ -1,3 +1,5 @@
+@props(['nom', 'ciutat', 'capacitat', 'equipPrincipal'])
+
 <div class="border rounded-lg shadow-md p-6 bg-white">
     <h2 class="text-2xl font-bold text-blue-800 mb-4">{{ $nom }}</h2>
     
@@ -12,7 +14,7 @@
         </p>
         <p>
             <strong class="font-semibold text-gray-600">Equip Principal:</strong> 
-            {{ $equip_principal }}
+            {{ $equipPrincipal }}
         </p>
     </div>
 </div>

@@ -59,16 +59,12 @@ class EstadiController extends Controller
             'equip_principal' => 'required|min:3',
         ]);
 
-        // Obtiene la lista actual de equipos desde la sesión (o la de por defecto)
         $estadis = Session::get('estadis', $this->estadis);
 
-        // Añade el nuevo equipo validado al final del array de equipos
         $estadis[] = $validated;
 
-        // Guarda el array actualizado en la sesión bajo la clave 'equips'
         Session::put('estadis', $estadis);
-
-        // Redirige a la ruta equips.index y envía un mensaje flash de éxito
+        
         return redirect()
             ->route('estadis.index')
             ->with('success', 'Estadi creat correctament!');
