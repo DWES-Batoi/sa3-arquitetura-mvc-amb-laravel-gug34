@@ -1,66 +1,65 @@
 @extends('layouts.app')
 
-@section('title', "Calendari de Partits")
+@section('title', "Programar Nou Partit")
 
 @section('content')
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-blue-800">Partits</h1>
-        
-        <a href="{{ route('partits.create') }}" 
-           class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            + Nou partit
-        </a>
-    </div>
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold text-blue-800 mb-6">Programar nou partit</h1>
 
-    @if (session('success'))
-        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4">
-            {{ session('success') }}
-        </div>
-    @endif
+        @if ($errors->any())
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6">
+                <p class="font-bold">Hi ha hagut errors:</p>
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <div class="overflow-x-auto bg-white rounded-lg shadow">
-        <table class="w-full text-left border-collapse">
-            <thead>
-                <tr class="bg-blue-800 text-white">
-                    <th class="px-4 py-3">Local</th>
-                    <th class="px-4 py-3">Visitant</th>
-                    <th class="px-4 py-3">Data</th>
-                    <th class="px-4 py-3">Resultat</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($partits as $key => $partit)
-                    <tr class="hover:bg-gray-50 border-b border-gray-200">
-                        <td class="px-4 py-3 font-semibold">
-                            <a href="{{ route('partits.show', $key) }}" class="text-blue-700 hover:underline">
-                                {{ $partit['local'] }}
-                            </a>
-                        </td>
-                        
-                        <td class="px-4 py-3">
-                            {{ $partit['visitant'] }}
-                        </td>
+        <form action="{{ route('partits.store') }}" method="POST" class="space-y-5">
+            @csrf
 
-                        <td class="px-4 py-3">
-                            {{ $partit['data'] }}
-                        </td>
-                        
-                        <td class="px-4 py-3 font-bold">
-                            @if($partit['resultat'])
-                                {{ $partit['resultat'] }}
-                            @else
-                                <span class="text-gray-400 font-normal italic">-</span>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="text-center p-4 text-gray-500">
-                            No hi ha partits programats.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="local" class="block text-gray-700 font-bold mb-2">Equip Local:</label>
+                    <input type="text" name="local" id="local" value="{{ old('local') }}" 
+                           class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500"
+                           placeholder="Ex: Barça Femení">
+                </div>
+
+                <div>
+                    <label for="visitant" class="block text-gray-700 font-bold mb-2">Equip Visitant:</label>
+                    <input type="text" name="visitant" id="visitant" value="{{ old('visitant') }}"
+                           class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500"
+                           placeholder="Ex: Reial Societat">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="data" class="block text-gray-700 font-bold mb-2">Data del partit:</label>
+                    <input type="date" name="data" id="data" value="{{ old('data') }}"
+                           class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
+                </div>
+
+                <div>
+                    <label for="resultat" class="block text-gray-700 font-bold mb-2">Resultat (Opcional):</label>
+                    <input type="text" name="resultat" id="resultat" value="{{ old('resultat') }}"
+                           class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500"
+                           placeholder="Ex: 2-1">
+                    <p class="text-xs text-gray-500 mt-1">Format: gols-gols (ex: 3-0)</p>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-3 pt-4">
+                <a href="{{ route('partits.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                    Cancel·lar
+                </a>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-bold">
+                    Guardar Partit
+                </button>
+            </div>
+        </form>
     </div>
 @endsection
