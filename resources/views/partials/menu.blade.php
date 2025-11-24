@@ -10,7 +10,12 @@
     </li>
     <li>
       <a class="text-white hover:underline" href="{{ route('estadis.index') }}">
-        Llistat d'Estadis
+        Estadis
+      </a>
+    </li>
+    <li>
+      <a class="text-white hover:underline" href="{{ route('jugadores.index') }}">
+        Jugadores
       </a>
     </li>
   </ul>

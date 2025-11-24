@@ -60,11 +60,9 @@ class EstadiController extends Controller
         ]);
 
         $estadis = Session::get('estadis', $this->estadis);
-
         $estadis[] = $validated;
-
         Session::put('estadis', $estadis);
-        
+
         return redirect()
             ->route('estadis.index')
             ->with('success', 'Estadi creat correctament!');

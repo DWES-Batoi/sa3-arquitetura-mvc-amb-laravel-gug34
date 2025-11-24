@@ -3,14 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EquipController;
 use App\Http\Controllers\EstadiController;
+use App\Http\Controllers\JugadoraController;
 
-// Ruta de bienvenida (GET /)
 Route::get('/', fn() => "Benvingut a la Guia d'Equips de Futbol Femení!");
 
-// Genera automáticamente varias rutas REST para 'equips'
+// Equips
 Route::resource('equips', EquipController::class);
 
+// Estadis
 Route::get('/estadis', [EstadiController::class, 'index'])->name('estadis.index');
 Route::get('/estadis/crear', [EstadiController::class, 'create'])->name('estadis.create');
 Route::post('/estadis', [EstadiController::class, 'store'])->name('estadis.store');
 Route::get('/estadis/{id}', [EstadiController::class, 'show'])->name('estadis.show');
+
+// Jugadores 
+Route::get('/jugadores', [JugadoraController::class, 'index'])->name('jugadores.index');
+Route::get('/jugadores/crear', [JugadoraController::class, 'create'])->name('jugadores.create');
+Route::post('/jugadores', [JugadoraController::class, 'store'])->name('jugadores.store');
+Route::get('/jugadores/{id}', [JugadoraController::class, 'show'])->name('jugadores.show');
